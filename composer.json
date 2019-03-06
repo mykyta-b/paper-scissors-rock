@@ -1,0 +1,21 @@
+{
+    "name": "mborysevych/paper-scissors-rock",
+    "description": "game",
+    "type": "project",
+    "license": "MIT",
+    "require": {
+        "php": ">=7.1"
+    },
+    "autoload": {
+        "psr-4": {"PSRG\\": "./src"}
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PSRG\\Tests\\Unit\\": "./tests/unit/",
+            "PSRG\\Tests\\Helpers\\": "./tests/helpers/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.5"
+    }
+}
