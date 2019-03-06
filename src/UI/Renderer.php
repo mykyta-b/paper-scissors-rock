@@ -75,7 +75,7 @@ class Renderer implements RendererInterface
                     $player->getName(),
                     $player->getType(),
                     $player->getStrategy(),
-                    $player->getTurn(),
+                    UIConstants::TURN_ALIASES[$player->getTurn()],
                 ]
             ;
 
@@ -122,13 +122,22 @@ class Renderer implements RendererInterface
         foreach ($stats as $alias => $stat) {
             $output[] = [
                 $alias,
-                isset($stat[StatsConstants::GAME_KEY]) ? $stat[StatsConstants::GAME_KEY] : '' ,
-                isset($stat[StatsConstants::WIN_KEY]) ?  $stat[StatsConstants::WIN_KEY] : '',
-                    isset($stat[StatsConstants::LOSE_KEY]) ?  $stat[StatsConstants::LOSE_KEY] : '',
-                        isset($stat[StatsConstants::DRAW_KEY]) ?  $stat[StatsConstants::DRAW_KEY] : '',
+                $this->formatStatsKey($stat, StatsConstants::GAME_KEY),
+                $this->formatStatsKey($stat, StatsConstants::WIN_KEY),
+                $this->formatStatsKey($stat, StatsConstants::LOSE_KEY),
+                $this->formatStatsKey($stat, StatsConstants::DRAW_KEY),
             ];
         }
 
         echo $this->tableRenderer->renderTable($output);
+    }
+
+    /**
+     * @param $stat
+     * @return string
+     */
+    protected function formatStatsKey(array $stat, string $key): string
+    {
+        return isset($stat[$key]) ? $stat[$key] : '';
     }
 }
