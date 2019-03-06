@@ -8,9 +8,7 @@
 namespace PSRG\Tests\Helpers\Traits;
 
 
-use PSRG\Core\Builder\BoardBuilderInterface;
 use PSRG\Core\Config\GameSettingsDTO;
-use PSRG\Core\DTO\BoardDTO;
 use PSRG\Core\DTO\GameDTO;
 use PSRG\DI;
 
