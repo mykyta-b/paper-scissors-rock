@@ -115,6 +115,29 @@ class GameStateAnalyzerTest extends TestCase
                 ],
                 'player1'
             ],
+            [
+                [
+                    'player1' => "P",
+                    'player2' => "S",
+
+                ],
+                'player2'
+            ],
+            [
+                [
+                    'player1' => "R",
+                    'player2' => "P",
+
+                ],
+                'player2'
+            ],            [
+                [
+                    'player1' => "S",
+                    'player2' => "R",
+
+                ],
+                'player2'
+            ],
         ];
     }
 
