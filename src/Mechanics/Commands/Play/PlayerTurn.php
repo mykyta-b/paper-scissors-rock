@@ -8,6 +8,7 @@
 namespace PSRG\Mechanics\Commands\Play;
 
 
+use PSRG\Core\DTO\BoardDTO;
 use PSRG\Core\DTO\PlayerDTO;
 use PSRG\Mechanics\MechanicsConstants;
 use PSRG\UI\InputRequestInterface;

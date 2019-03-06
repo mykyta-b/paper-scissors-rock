@@ -25,4 +25,6 @@ interface RendererInterface
      * @return void
      */
     public function renderGameResult(array $players): void;
+
+    public function renderStatistic(array $stats);
 }

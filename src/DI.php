@@ -13,6 +13,8 @@ use PSRG\Core\Builder\PlayersBuilder;
 use PSRG\Core\Config\ConfigParser;
 use PSRG\Core\Config\ConfigValidationDecorator;
 use PSRG\Core\State\GameState;
+use PSRG\Core\Stats\GameStatistic;
+use PSRG\Core\Stats\StatsFileReader;
 use PSRG\Mechanics\Commands\Begin;
 use PSRG\Mechanics\Commands\Draw;
 use PSRG\Mechanics\Commands\End;
@@ -84,14 +86,16 @@ class DI
             $this->createRenderer(),
             $this->createInputRequest(),
             $this->createAutoPlayer(),
-            $this->createGameStateAnalyzer()
+            $this->createGameStateAnalyzer(),
+            $this->createGameStatistic()
         );
     }
 
     public function createGameOverCommand()
     {
         return new End(
-            $this->createRenderer()
+            $this->createRenderer(),
+            $this->createGameStatistic()
         );
     }
 
@@ -121,6 +125,7 @@ class DI
             $this->createRenderer(),
             $this->createInputRequest(),
             $this->createComputerTurnMaker()
+
         );
     }
 
@@ -168,5 +173,15 @@ class DI
         return new GameBuilder(
             $this->createPlayersBuilder()
         );
+    }
+
+    public function createStatsFileReader()
+    {
+        return new StatsFileReader();
+    }
+
+    public function createGameStatistic()
+    {
+        return new GameStatistic($this->createStatsFileReader());
     }
 }

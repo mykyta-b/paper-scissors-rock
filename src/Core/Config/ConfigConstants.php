@@ -26,5 +26,6 @@ interface ConfigConstants
     const PLAYER_TYPE_HUMAN = 'human';
 
     const PLAYER_CONFIG_OPTION = 'player_configuration';
-    const PLAYGROUND_SIZE_CONFIG_OPTION = 'playgroundSize';
+    const STATS_CONFIG_OPTION = 'game_stats';
+    const STATS_CONFIG_FILE_KEY = 'statFile';
 }

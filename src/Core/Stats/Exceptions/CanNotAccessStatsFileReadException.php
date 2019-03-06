@@ -5,19 +5,15 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-namespace PSRG\Tests\Functional\Mechanics\Commands;
+namespace PSRG\Core\Stats\Exceptions;
 
 
-class GameIsHangingTestException extends \Exception
+class CanNotAccessStatsFileReadException extends \Exception
 {
     protected $message;
 
-    /**
-     * @param string $message
-     */
     public function __construct(string $message)
     {
         $this->message = $message;
-        ob_end_clean();
     }
 }

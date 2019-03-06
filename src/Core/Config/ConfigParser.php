@@ -48,7 +48,9 @@ class ConfigParser implements ConfigParserInterface
         }
 
         return (new GameSettingsDTO())
-            ->setPlayerSettings($configContent[ConfigConstants::PLAYER_CONFIG_OPTION]);
+            ->setPlayerSettings($configContent[ConfigConstants::PLAYER_CONFIG_OPTION])
+            ->setStatSettings($configContent[ConfigConstants::STATS_CONFIG_OPTION])
+            ;
     }
 
 }

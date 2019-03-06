@@ -11,6 +11,7 @@ namespace PSRG\Mechanics\Commands;
 use PSRG\Core\DTO\GameDTO;
 use PSRG\Core\DTO\PlayerDTO;
 use PSRG\Core\State\GameStateInterface;
+use PSRG\Core\Stats\GameStatisticInterface;
 use PSRG\Mechanics\Commands\Exception\GameIsHangingException;
 use PSRG\Mechanics\Commands\Play\PlayerTurn;
 use PSRG\Mechanics\GameStateAnalyzer;
@@ -46,16 +47,23 @@ class Play extends CommandTemplate
      */
     protected $gameStateAnalyzer;
 
+    /**
+     * @var GameStatisticInterface
+     */
+    protected $gameStatistic;
+
     public function __construct(
         RendererInterface $renderer,
         InputRequestInterface $inputRequest,
         PlayerTurn $turnMaker,
-        GameStateAnalyzer $gameStateAnalyzer
+        GameStateAnalyzer $gameStateAnalyzer,
+        GameStatisticInterface $gameStatistic
     ) {
         $this->renderer = $renderer;
         $this->inputRequest = $inputRequest;
         $this->turnMaker = $turnMaker;
         $this->gameStateAnalyzer = $gameStateAnalyzer;
+        $this->gameStatistic = $gameStatistic;
     }
 
     /**
@@ -70,8 +78,6 @@ class Play extends CommandTemplate
             $this->renderer->renderPhrase($player->getAlias());
             $playerResponse = $this->getNextTurn($player);
             $player->setTurn($playerResponse);
-
-
         }
 
         $this->gameStateAnalyzer->findWinner($gameDTO);
@@ -81,6 +87,7 @@ class Play extends CommandTemplate
             $playIsEndedWithState = MechanicsConstants::DRAW;
         }
 
+        $this->gameStatistic->updateStats($gameDTO);
         $gameState->changeState($playIsEndedWithState);
         $gameDTO->setState($playIsEndedWithState);
     }

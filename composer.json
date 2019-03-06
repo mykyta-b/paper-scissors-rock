@@ -12,7 +12,6 @@
     "autoload-dev": {
         "psr-4": {
             "PSRG\\Tests\\Unit\\": "./tests/unit/",
-            "PSRG\\Tests\\Functional\\": "./tests/functional/",
             "PSRG\\Tests\\Helpers\\": "./tests/helpers/"
         }
     },

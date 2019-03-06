@@ -9,6 +9,7 @@ namespace PSRG\UI;
 
 
 use PSRG\Core\DTO\PlayerDTO;
+use PSRG\Core\Stats\StatsConstants;
 
 class Renderer implements RendererInterface
 {
@@ -103,5 +104,31 @@ class Renderer implements RendererInterface
             $phrase,
             PHP_EOL,
         ]);
+    }
+
+    /**
+     * @param array $stats
+     */
+    public function renderStatistic(array $stats): void
+    {
+        $output[] = [
+            'Player Alias',
+            'Games',
+            'Won',
+            'Loose',
+            'Draw',
+        ];
+
+        foreach ($stats as $alias => $stat) {
+            $output[] = [
+                $alias,
+                isset($stat[StatsConstants::GAME_KEY]) ? $stat[StatsConstants::GAME_KEY] : '' ,
+                isset($stat[StatsConstants::WIN_KEY]) ?  $stat[StatsConstants::WIN_KEY] : '',
+                    isset($stat[StatsConstants::LOSE_KEY]) ?  $stat[StatsConstants::LOSE_KEY] : '',
+                        isset($stat[StatsConstants::DRAW_KEY]) ?  $stat[StatsConstants::DRAW_KEY] : '',
+            ];
+        }
+
+        echo $this->tableRenderer->renderTable($output);
     }
 }

@@ -16,6 +16,28 @@ class GameSettingsDTO
      */
     protected $playerSettings;
 
+    /**
+     * @var array
+     */
+    protected $statSettings;
+
+    /**
+     * @return array
+     */
+    public function getStatSettings(): array
+    {
+        return $this->statSettings;
+    }
+
+    /**
+     * @param array $statSettings
+     * @return GameSettingsDTO
+     */
+    public function setStatSettings(array $statSettings): GameSettingsDTO
+    {
+        $this->statSettings = $statSettings;
+        return $this;
+    }
 
     /**
      * @return array

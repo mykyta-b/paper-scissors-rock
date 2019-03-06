@@ -25,9 +25,12 @@ trait GamePreSetUpTrait
     {
         $container = new DI();
 
-        $playerSettings = empty($playerSettings) ? $this->getDefaultPlayerSettings() : $playerSettings;
+
 
         $gameSettingsDTO = $this->createSettingsDTO($playerSettings);
+        $gameSettingsDTO->setStatSettings(
+            ["statFile" => '/mock']
+        );
         $this->gameDTO = $container->createGameBuilder()->buildGameDTO($gameSettingsDTO);
     }
 
@@ -37,6 +40,7 @@ trait GamePreSetUpTrait
      */
     protected function createSettingsDTO($playerSettings): GameSettingsDTO
     {
+        $playerSettings = empty($playerSettings) ? $this->getDefaultPlayerSettings() : $playerSettings;
         $gameSettingsDTO = (new GameSettingsDTO())
             ->setPlayerSettings($playerSettings);
         return $gameSettingsDTO;
